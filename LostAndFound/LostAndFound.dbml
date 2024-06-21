@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Lost&amp;Found Database" Class="LostAndFoundDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-34HFC3NA\SQLEXPRESS;Initial Catalog=&quot;Lost&amp;Found Database&quot;;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="LostAndFound.Properties.Settings" SettingsPropertyName="Lost_Found_DatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Claim" Member="Claims">
+    <Type Name="Claim">
+      <Column Name="Claim_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Claim_FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Claim_LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Claim_Role" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Claim_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Staff_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Claim_Item" Member="Items" ThisKey="Claim_ID" OtherKey="Claim_ID" Type="Item" />
+      <Association Name="Claim_Log" Member="Logs" ThisKey="Claim_ID" OtherKey="Claim_ID" Type="Log" />
+      <Association Name="Staff_Claim" Member="Staff" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Item" Member="Items">
+    <Type Name="Item">
+      <Column Name="Item_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item_Color" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item_Desc" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Item_Location" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Surrender_FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Surrender_LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Surrender_Role" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Surrender_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Staff_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Claim_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item_Status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item_Photo" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Item_Log" Member="Logs" ThisKey="Item_ID" OtherKey="Item_ID" Type="Log" />
+      <Association Name="Claim_Item" Member="Claim" ThisKey="Claim_ID" OtherKey="Claim_ID" Type="Claim" IsForeignKey="true" />
+      <Association Name="Staff_Item" Member="Staff" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Logs" Member="Logs">
+    <Type Name="Log">
+      <Column Name="Logs_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Logs_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Logs_Desc" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item_ID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Claim_ID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Staff_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Claim_Log" Member="Claim" ThisKey="Claim_ID" OtherKey="Claim_ID" Type="Claim" IsForeignKey="true" />
+      <Association Name="Item_Log" Member="Item" ThisKey="Item_ID" OtherKey="Item_ID" Type="Item" IsForeignKey="true" />
+      <Association Name="Staff_Log" Member="Staff" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Staff" Member="Staffs">
+    <Type Name="Staff">
+      <Column Name="Staff_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Staff_FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Staff_LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StaffRole_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Staff_Status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Staff_Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_Claim" Member="Claims" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="Claim" />
+      <Association Name="Staff_Item" Member="Items" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="Item" />
+      <Association Name="Staff_Log" Member="Logs" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="Log" />
+      <Association Name="StaffRole_Staff" Member="StaffRole" ThisKey="StaffRole_ID" OtherKey="StaffRole_ID" Type="StaffRole" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StaffRole" Member="StaffRoles">
+    <Type Name="StaffRole">
+      <Column Name="StaffRole_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StaffRole_Desc" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="StaffRole_Staff" Member="Staffs" ThisKey="StaffRole_ID" OtherKey="StaffRole_ID" Type="Staff" />
+    </Type>
+  </Table>
+</Database>
