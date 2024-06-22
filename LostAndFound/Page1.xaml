@@ -1,0 +1,59 @@
+﻿<Page x:Class="LostAndFound.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LostAndFound"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1000"
+      Title="Page1">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="130"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Margin="25,10,214,10" Content="Item ID"
+                    FontFamily="Segoe UI Black"/>
+            <Button Margin="214,10,25,10" Content="Claim ID"
+                    FontFamily="Segoe UI Black"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Margin="25,10,0,0" HorizontalAlignment="Left" Width="150" 
+                        BorderBrush="Black" BorderThickness="5"/>
+                <Button Grid.Column="1" Margin="40,15,60,85" Content="TAKE PHOTO"/>
+                <Button Grid.Column="1" Margin="40,85,60,15" Content="UPLOAD"/>
+            </Grid>
+
+            <TextBox Grid.Row="2" Margin="0,20,0,570"/>
+            <TextBox Grid.Row="2" Margin="0,70,0,520"/>
+            <TextBox Grid.Row="2" Margin="0,120,0,470"/>
+            <Label Grid.Row="2" Margin="0,170,0,420" Content="text"/>
+            <TextBox Grid.Row="2" Margin="0,220,0,320"/>
+            <TextBox Grid.Row="2" Margin="0,320,0,270"/>
+            <TextBox Grid.Row="2" Margin="0,370,0,220"/>
+
+            <TextBox Grid.Row="2" Margin="0,420,0,170"/>
+            <TextBox Grid.Row="2" Margin="0,470,0,120"/>
+            <TextBox Grid.Row="2" Margin="0,520,0,70"/>
+            <TextBox Grid.Row="2" Margin="0,570,0,20"/>
+        </Grid>
+    </Grid>
+</Page>

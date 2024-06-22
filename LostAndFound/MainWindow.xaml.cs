@@ -58,7 +58,9 @@ namespace LostAndFound
 
             if (admins.ContainsKey(username) && admins[username][0] == password)
             {
+                StaticWindow.currentStaffid = username;
                 StaticWindow.currentStaffname = $"{admins[username][1]} {admins[username][2]}";
+                StaticWindow.currentStaffpass = $"{admins[username][0]}";
                 Window2 window2 = new Window2(StaticWindow.currentStaffname);
                 window2.Show();
                 this.Close();

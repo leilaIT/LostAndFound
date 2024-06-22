@@ -17,7 +17,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>-->
 
-        <Label Content="Username:" HorizontalAlignment="Left" 
+        <Label Content="User ID:" HorizontalAlignment="Left" 
                Margin="389,207,0,0" VerticalAlignment="Top"
                FontSize="20" FontFamily="Segoe UI Black"/>
         <TextBox x:Name="txtUsername" HorizontalAlignment="Center" 

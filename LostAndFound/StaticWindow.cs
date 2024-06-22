@@ -9,5 +9,8 @@ namespace LostAndFound
     internal static class StaticWindow
     {
         public static string currentStaffname = null;
+        public static string currentStaffpass = null;
+        public static string currentStaffid = null;
+        public static bool verifyStaff = false;
     }
 }
