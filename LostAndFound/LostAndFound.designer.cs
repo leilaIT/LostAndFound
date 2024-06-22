@@ -116,6 +116,27 @@ namespace LostAndFound
 				return this.GetTable<StaffRole>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_AddMissingItem")]
+		public int Procedure_AddMissingItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemID", DbType="VarChar(50)")] string itemID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemName", DbType="VarChar(50)")] string itemName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemColor", DbType="VarChar(50)")] string itemColor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemDesc", DbType="VarChar(MAX)")] string itemDesc, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemLocation", DbType="VarChar(50)")] string itemLocation, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderFirstName", DbType="VarChar(50)")] string surrenderFirstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderLastName", DbType="VarChar(50)")] string surrenderLastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderRole", DbType="VarChar(50)")] string surrenderRole, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderDate", DbType="DateTime")] System.Nullable<System.DateTime> surrenderDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StaffID", DbType="VarChar(50)")] string staffID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimID", DbType="VarChar(50)")] string claimID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemStatus", DbType="VarChar(50)")] string itemStatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemPhoto", DbType="NVarChar(MAX)")] string itemPhoto)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), itemID, itemName, itemColor, itemDesc, itemLocation, surrenderFirstName, surrenderLastName, surrenderRole, surrenderDate, staffID, claimID, itemStatus, itemPhoto);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_SearchItems")]
+		public ISingleResult<Procedure_SearchItemsResult> Procedure_SearchItems([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string searchTerm)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), searchTerm);
+			return ((ISingleResult<Procedure_SearchItemsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_AddClaimedItem")]
+		public int Procedure_AddClaimedItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SelectedItemID", DbType="VarChar(50)")] string selectedItemID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimID", DbType="VarChar(50)")] string claimID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimFirstName", DbType="VarChar(50)")] string claimFirstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimLastName", DbType="VarChar(50)")] string claimLastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimRole", DbType="VarChar(50)")] string claimRole, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimDate", DbType="DateTime")] System.Nullable<System.DateTime> claimDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StaffID", DbType="VarChar(50)")] string staffID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemStatus", DbType="VarChar(50)")] string itemStatus)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), selectedItemID, claimID, claimFirstName, claimLastName, claimRole, claimDate, staffID, itemStatus);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Claim")]
@@ -1580,6 +1601,248 @@ namespace LostAndFound
 		{
 			this.SendPropertyChanging();
 			entity.StaffRole = null;
+		}
+	}
+	
+	public partial class Procedure_SearchItemsResult
+	{
+		
+		private string _Item_ID;
+		
+		private string _Item_Name;
+		
+		private string _Item_Color;
+		
+		private string _Item_Desc;
+		
+		private string _Item_Location;
+		
+		private string _Surrender_FirstName;
+		
+		private string _Surrender_LastName;
+		
+		private string _Surrender_Role;
+		
+		private System.DateTime _Surrender_Date;
+		
+		private string _Staff_ID;
+		
+		private string _Claim_ID;
+		
+		private string _Item_Status;
+		
+		private string _Item_Photo;
+		
+		public Procedure_SearchItemsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Item_ID
+		{
+			get
+			{
+				return this._Item_ID;
+			}
+			set
+			{
+				if ((this._Item_ID != value))
+				{
+					this._Item_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Item_Name
+		{
+			get
+			{
+				return this._Item_Name;
+			}
+			set
+			{
+				if ((this._Item_Name != value))
+				{
+					this._Item_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_Color", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Item_Color
+		{
+			get
+			{
+				return this._Item_Color;
+			}
+			set
+			{
+				if ((this._Item_Color != value))
+				{
+					this._Item_Color = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_Desc", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Item_Desc
+		{
+			get
+			{
+				return this._Item_Desc;
+			}
+			set
+			{
+				if ((this._Item_Desc != value))
+				{
+					this._Item_Desc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_Location", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Item_Location
+		{
+			get
+			{
+				return this._Item_Location;
+			}
+			set
+			{
+				if ((this._Item_Location != value))
+				{
+					this._Item_Location = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Surrender_FirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Surrender_FirstName
+		{
+			get
+			{
+				return this._Surrender_FirstName;
+			}
+			set
+			{
+				if ((this._Surrender_FirstName != value))
+				{
+					this._Surrender_FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Surrender_LastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Surrender_LastName
+		{
+			get
+			{
+				return this._Surrender_LastName;
+			}
+			set
+			{
+				if ((this._Surrender_LastName != value))
+				{
+					this._Surrender_LastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Surrender_Role", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Surrender_Role
+		{
+			get
+			{
+				return this._Surrender_Role;
+			}
+			set
+			{
+				if ((this._Surrender_Role != value))
+				{
+					this._Surrender_Role = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Surrender_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Surrender_Date
+		{
+			get
+			{
+				return this._Surrender_Date;
+			}
+			set
+			{
+				if ((this._Surrender_Date != value))
+				{
+					this._Surrender_Date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Staff_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Staff_ID
+		{
+			get
+			{
+				return this._Staff_ID;
+			}
+			set
+			{
+				if ((this._Staff_ID != value))
+				{
+					this._Staff_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Claim_ID
+		{
+			get
+			{
+				return this._Claim_ID;
+			}
+			set
+			{
+				if ((this._Claim_ID != value))
+				{
+					this._Claim_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_Status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Item_Status
+		{
+			get
+			{
+				return this._Item_Status;
+			}
+			set
+			{
+				if ((this._Item_Status != value))
+				{
+					this._Item_Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item_Photo", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Item_Photo
+		{
+			get
+			{
+				return this._Item_Photo;
+			}
+			set
+			{
+				if ((this._Item_Photo != value))
+				{
+					this._Item_Photo = value;
+				}
+			}
 		}
 	}
 }
