@@ -23,11 +23,10 @@ namespace LostAndFound
         LostAndFoundDataContext _lfDC = null;
         private string itemID = null;
         private string claimID = null;
+        private string searchTerm = null;
         public Window2(string username)
         {
             InitializeComponent();
-            //Item_Frame.Content = new Page1();
-            //Item_Frame.Content = new Page2();
             _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_DatabaseConnectionString);
             WelcomeAdmin.Text = $"Welcome {username}!";
             tbdate.Text = DateTime.Now.ToString("MMMM dd, yyyy");
@@ -48,10 +47,11 @@ namespace LostAndFound
                               select i).ToList();
             Items_Listbox.ItemsSource = getAllItems;
         }
-        private void searchbar()
+        private void tbSearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //code for the searchbar
-            //not yet added
+            searchTerm = tbSearchBar.Text;
+            var searchQuery = _lfDC.Procedure_SearchItems(searchTerm).ToList();
+            Items_Listbox.ItemsSource = searchQuery;
         }
 
         #region selecting_item
@@ -290,7 +290,7 @@ namespace LostAndFound
             }
             else
             {
-                MessageBox.Show("Please fill out all fields \nwith appropriate claim information!");
+                MessageBox.Show("Please fill out all fields with appropriate claim information!");
             }
         }
         #endregion
@@ -313,5 +313,339 @@ namespace LostAndFound
             btnClaimID.IsEnabled = true;
             btnUpdateClaim.Visibility = Visibility.Collapsed;
         }
+
+        #region filter stuff
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterBox_DropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FilterItems()
+        {
+            var filteredItems = _lfDC.Items.ToList();
+
+            if (cbRed.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Red").ToList();
+            }
+
+            if (cbOrange.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Orange").ToList();
+            }
+
+            if (cbYellow.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Yellow").ToList();
+            }
+
+            if (cbGreen.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Green").ToList();
+            }
+
+            if (cbBlue.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Blue").ToList();
+            }
+
+            if (cbViolet.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Violet").ToList();
+            }
+
+            if (cbPink.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Pink").ToList();
+            }
+
+            if (cbBlack.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Black").ToList();
+            }
+
+            if (cbWhite.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "White").ToList();
+            }
+
+            if (cbGray.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Gray").ToList();
+            }
+
+            if (cbBrown.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Brown").ToList();
+            }
+
+            if (cbBeige.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Beige").ToList();
+            }
+
+            if (cbMultiColor.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Multi-color").ToList();
+            }
+
+            if (cbTransparent.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Color == "Transparent").ToList();
+            }
+
+            if (cbStudent.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Surrender_Role == "Student").ToList();
+            }
+
+            if (cbEmployee.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Surrender_Role == "Employee").ToList();
+            }
+
+            if (cbSTFF01.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Staff_ID == "STFF-01").ToList();
+            }
+
+            if (cbSTFF03.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Staff_ID == "STFF-03").ToList();
+            }
+
+            if (cbSTFF04.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Staff_ID == "STFF-04").ToList();
+            }
+
+            if (cbMissing.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Status == "Missing").ToList();
+            }
+
+            if (cbClaimed.IsChecked == true)
+            {
+                filteredItems = filteredItems.Where(p => p.Item_Status == "Claimed").ToList();
+            }
+
+            Items_Listbox.ItemsSource = filteredItems.ToList();
+        }
+
+        private void cbRed_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbOrange_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbYellow_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbGreen_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbBlue_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbViolet_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbPink_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbBlack_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbWhite_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbGray_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbBrown_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbBeige_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbMultiColor_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbTransparent_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbStudent_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbEmployee_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbSTFF01_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbSTFF03_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbSTFF04_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbMissing_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbClaimed_Checked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbRed_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbOrange_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbYellow_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbGreen_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbBlue_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbViolet_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbPink_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbBlack_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbWhite_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbGray_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbBrown_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbBeige_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbMultiColor_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbTransparent_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbStudent_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbEmployee_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbSTFF01_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbSTFF03_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbSTFF04_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbMissing_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+
+        private void cbClaimed_UnChecked(object sender, RoutedEventArgs e)
+        {
+            FilterItems();
+        }
+        #endregion
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LostAndFound"
         mc:Ignorable="d"
         Title="Window2" Height="800" Width="1000" WindowState="Maximized">
-    
+
     <Grid Margin="0,2,0,-2" Background="#FFC6C6FF">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -23,12 +23,41 @@
         Grid.Row="2"/>
 
         <!--Welcome user-->
-        <Grid Grid.RowSpan="2" Background="#FF5F2F9C">
-            <TextBlock x:Name="WelcomeAdmin" Text="Welcome user!" HorizontalAlignment="Left"
-        Margin="10" FontSize="20" FontFamily="Segoe UI Black" Foreground="White"/>
+        <Grid Grid.RowSpan="2" Background="#FF5F2F9C"/>
 
-        </Grid>
+        <TextBlock x:Name="WelcomeAdmin" Text="Welcome user!" HorizontalAlignment="Left"
+                   Margin="10" FontSize="20" FontFamily="Segoe UI Black" Foreground="White"/>
+        <TextBox x:Name="tbSearchBar" Grid.Row="1" Margin="20,10,350,10" FontSize="14" TextChanged="tbSearchBar_TextChanged"/>
 
+        <ComboBox x:Name="cbFilter" HorizontalAlignment="Left" Margin="370,0,0,0" VerticalAlignment="Center" Width="150" Height="30" SelectionChanged="ComboBox_SelectionChanged" DropDownClosed="FilterBox_DropDownClosed" Grid.Row="1">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FFF4F4F4" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <CheckBox x:Name="cbRed" Content="Red" Checked="cbRed_Checked" Unchecked="cbRed_UnChecked"/>
+            <CheckBox x:Name="cbOrange" Content="Orange" Checked="cbOrange_Checked" Unchecked="cbOrange_UnChecked"/>
+            <CheckBox x:Name="cbYellow" Content="Yellow" Checked="cbYellow_Checked" Unchecked="cbYellow_UnChecked"/>
+            <CheckBox x:Name="cbGreen" Content="Green" Checked="cbGreen_Checked" Unchecked="cbGreen_UnChecked"/>
+            <CheckBox x:Name="cbBlue" Content="Blue" Checked="cbBlue_Checked" Unchecked="cbBlue_UnChecked"/>
+            <CheckBox x:Name="cbViolet" Content="Violet" Checked="cbViolet_Checked" Unchecked="cbViolet_UnChecked"/>
+            <CheckBox x:Name="cbPink" Content="Pink" Checked="cbPink_Checked" Unchecked="cbPink_UnChecked"/>
+            <CheckBox x:Name="cbBlack" Content="Black" Checked="cbBlack_Checked" Unchecked="cbBlack_UnChecked"/>
+            <CheckBox x:Name="cbWhite" Content="White" Checked="cbWhite_Checked" Unchecked="cbWhite_UnChecked"/>
+            <CheckBox x:Name="cbGray" Content="Gray" Checked="cbGray_Checked" Unchecked="cbGray_UnChecked"/>
+            <CheckBox x:Name="cbBrown" Content="Brown" Checked="cbBrown_Checked" Unchecked="cbBrown_UnChecked"/>
+            <CheckBox x:Name="cbBeige" Content="Beige" Checked="cbBeige_Checked" Unchecked="cbBeige_UnChecked"/>
+            <CheckBox x:Name="cbMultiColor" Content="Multi-Color" Checked="cbMultiColor_Checked" Unchecked="cbMultiColor_UnChecked"/>
+            <CheckBox x:Name="cbTransparent" Content="Transparent" Checked="cbTransparent_Checked" Unchecked="cbTransparent_UnChecked"/>
+            <CheckBox x:Name="cbStudent" Content="Student" Checked="cbStudent_Checked" Unchecked="cbStudent_UnChecked"/>
+            <CheckBox x:Name="cbEmployee" Content="Employee" Checked="cbEmployee_Checked" Unchecked="cbEmployee_UnChecked"/>
+            <CheckBox x:Name="cbSTFF01" Content="STFF01" Checked="cbSTFF01_Checked" Unchecked="cbSTFF01_UnChecked"/>
+            <CheckBox x:Name="cbSTFF03" Content="STFF03" Checked="cbSTFF03_Checked" Unchecked="cbSTFF03_UnChecked"/>
+            <CheckBox x:Name="cbSTFF04" Content="STFF04" Checked="cbSTFF04_Checked" Unchecked="cbSTFF04_UnChecked"/>
+            <CheckBox x:Name="cbMissing" Content="Missing" Checked="cbMissing_Checked" Unchecked="cbMissing_UnChecked"/>
+            <CheckBox x:Name="cbClaimed" Content="Claimed" Checked="cbClaimed_Checked" Unchecked="cbClaimed_UnChecked"/>
+        </ComboBox>
         <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tbdate" HorizontalAlignment="Right" 
                    Margin="10" VerticalAlignment="Center" FontSize="15" FontFamily="Segoe UI Italic" 
                    Foreground="Black"/>
