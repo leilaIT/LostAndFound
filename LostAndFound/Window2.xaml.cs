@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AForge.Video;
+using AForge.Video.DirectShow;
 
 namespace LostAndFound
 {
@@ -44,8 +46,6 @@ namespace LostAndFound
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
             page1.clearPage1();
-            MainWindow mw = new MainWindow();
-            mw.Show();
             this.Close();
         }
         private void populateListbox()
@@ -195,8 +195,13 @@ namespace LostAndFound
             btnReport.IsEnabled = true;
             btnLogout.IsEnabled = true;
             Items_Listbox.IsEnabled = true;
+            page1.btnItemID.IsEnabled = true;
+            page1.btnClaimID.IsEnabled = true;
             if (StaticClass.verifyStaff)
             {
+                Items_Listbox.IsEnabled = false;
+                page1.btnItemID.IsEnabled = false;
+                page1.btnClaimID.IsEnabled = false;
                 page1.TrueHitTest();
                 checkcurrentClaimID = page1.btnClaimID.Content.ToString();
                 if (page1.tbClaim_FirstName.Visibility == Visibility.Visible)
@@ -225,9 +230,6 @@ namespace LostAndFound
                 btnBack.Visibility = Visibility.Visible;
 
                 StaticClass.verifyStaff = false;
-
-                page1.btnItemID.IsEnabled = true;
-                page1.btnClaimID.IsEnabled = true;
                 page1.gridDisplay.IsHitTestVisible = true;
             }
         }
@@ -307,6 +309,13 @@ namespace LostAndFound
             btnEdit.Visibility = Visibility.Visible;
             page1.btnClear.Visibility = Visibility.Visible;
             page1.tbSelectedpic.Visibility = Visibility.Collapsed;
+            page1.btnUpload.Visibility = Visibility.Collapsed;
+            page1.btnConfirm.Visibility = Visibility.Collapsed;
+            if (page2._videoDevice != null && page2._videoDevice.IsRunning)
+            {
+                page2._videoDevice.SignalToStop();
+                page2._videoDevice.WaitForStop();
+            }
         }
 
         #region filter stuff

@@ -34,11 +34,11 @@
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image x:Name="pic" Grid.Column="0" Margin="25,0,0,40" Width="158" 
+                    <Image x:Name="pic" Grid.Column="0" Margin="25,0,0,40" Width="175" 
                    HorizontalAlignment="Left" Stretch="UniformToFill"/>
 
                     <ComboBox x:Name="cmbCamera" Margin="25,174,18,0" SelectionChanged="cmbCamera_SelectionChanged" Height="26" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tbSelectedpic" Visibility="Collapsed" Margin="25,174,-24,0" Height="18" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbSelectedpic" Visibility="Collapsed" IsHitTestVisible="False" Margin="25,174,-24,0" Height="18" VerticalAlignment="Top"/>
 
                     <Button x:Name="btnStart" Grid.Column="1" Margin="40,10,60,145" Content="OPEN CAMERA" Grid.ColumnSpan="2" Click="btnStart_Click"
                     FontSize="10" FontFamily="Segoe UI Black">

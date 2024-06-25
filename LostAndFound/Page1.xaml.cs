@@ -117,7 +117,7 @@ namespace LostAndFound
             cbClaim_Role.SelectedIndex = -1;
             tbClaim_Date.Text = "";
             tbClaimStaff_ID.Clear();
-            pic.Source = new BitmapImage(new Uri("No photo.jpg", UriKind.RelativeOrAbsolute));
+            pic.Source = new BitmapImage(new Uri(@"C:\All Items\No photo.jpg", UriKind.RelativeOrAbsolute));
             btnItemID.Content = "Item ID";
             btnClaimID.Content = "Claim ID";
         }

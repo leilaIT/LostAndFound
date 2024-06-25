@@ -34,10 +34,10 @@
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image x:Name="pic" Grid.Column="0" Margin="25,0,0,40" Width="158" 
-                       HorizontalAlignment="Left" Stretch="UniformToFill"/>
-                    
-                    <TextBox x:Name="tbSelectedpic" Visibility="Collapsed" Margin="25,174,-175,0" Height="18" VerticalAlignment="Top"/>
+                    <Image x:Name="pic" Source="/No photo.jpg" Grid.Column="0" Margin="25,0,0,40" Width="176" 
+                       HorizontalAlignment="Left" Stretch="UniformToFill" Grid.ColumnSpan="2"/>
+
+                    <TextBox x:Name="tbSelectedpic" Visibility="Collapsed" IsHitTestVisible="False" Margin="25,174,-175,0" Height="18" VerticalAlignment="Top"/>
 
                     <Button x:Name="btnUpload" Visibility="Collapsed" Grid.Column="1" Margin="40,10,60,145" Content="UPLOAD" Grid.ColumnSpan="2" Click="btnUpload_Click"
                         FontSize="10" FontFamily="Segoe UI Black">

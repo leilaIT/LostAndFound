@@ -17,8 +17,8 @@ namespace LostAndFound
     public partial class Page2 : Page
     {
         //this page is for adding an item record thru the system
-        private FilterInfoCollection _videoDevices;
-        private VideoCaptureDevice _videoDevice;
+        public FilterInfoCollection _videoDevices;
+        public VideoCaptureDevice _videoDevice;
         private string picPath = null;
         public string picfileName = "";
         BitmapImage _default = new BitmapImage();

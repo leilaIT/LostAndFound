@@ -23,10 +23,11 @@ namespace LostAndFound
         LostAndFoundDataContext _lfDC = null;
 
         private Dictionary<string, string[]> admins = new Dictionary<string, string[]>();
-        string[] adminArr = new string[3];
+        string[] adminArr = new string[4];
         //0 - staffPass
         //1 - staffFirstname
         //2 - staffLastname
+        //3 - staffStatus
 
         public MainWindow()
         {
@@ -41,8 +42,9 @@ namespace LostAndFound
                 adminArr[0] = s.Staff_Password;
                 adminArr[1] = s.Staff_FirstName;
                 adminArr[2] = s.Staff_LastName;
+                adminArr[3] = s.Staff_Status;
                 admins.Add(s.Staff_ID, adminArr);
-                adminArr = new string[3];
+                adminArr = new string[4];
             }
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -58,12 +60,18 @@ namespace LostAndFound
 
             if (admins.ContainsKey(username) && admins[username][0] == password)
             {
-                StaticClass.currentStaffid = username;
-                StaticClass.currentStaffname = $"{admins[username][1]} {admins[username][2]}";
-                StaticClass.currentStaffpass = $"{admins[username][0]}";
-                Window2 window2 = new Window2(StaticClass.currentStaffname);
-                window2.Show();
-                this.Close();
+                if (admins[username][3] != "Inactive")
+                {
+                    StaticClass.currentStaffid = username;
+                    StaticClass.currentStaffname = $"{admins[username][1]} {admins[username][2]}";
+                    StaticClass.currentStaffpass = $"{admins[username][0]}";
+                    Window2 window2 = new Window2(StaticClass.currentStaffname);
+                    window2.Show();
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("This staff is currenly inactive.");
+
             }
             else
             {
