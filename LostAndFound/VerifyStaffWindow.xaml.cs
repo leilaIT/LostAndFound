@@ -26,9 +26,9 @@ namespace LostAndFound
         }
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            if (pass_Textbox.Text == StaticWindow.currentStaffpass)
+            if (pass_Textbox.Text == StaticClass.currentStaffpass)
             {
-                StaticWindow.verifyStaff = true;
+                StaticClass.verifyStaff = true;
                 MessageBox.Show("Edit Access Allowed.");
                 this.Close();
             }

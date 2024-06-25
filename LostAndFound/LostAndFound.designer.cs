@@ -137,6 +137,20 @@ namespace LostAndFound
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), selectedItemID, claimID, claimFirstName, claimLastName, claimRole, claimDate, staffID, itemStatus);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_UpdateClaimedItem")]
+		public int Procedure_UpdateClaimedItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimID", DbType="VarChar(50)")] string claimID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimFirstName", DbType="VarChar(50)")] string claimFirstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimLastName", DbType="VarChar(50)")] string claimLastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimRole", DbType="VarChar(50)")] string claimRole)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), claimID, claimFirstName, claimLastName, claimRole);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_UpdateMissingItem")]
+		public int Procedure_UpdateMissingItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemID", DbType="VarChar(50)")] string itemID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemName", DbType="VarChar(50)")] string itemName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemColor", DbType="VarChar(50)")] string itemColor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemDesc", DbType="VarChar(MAX)")] string itemDesc, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemLocation", DbType="VarChar(50)")] string itemLocation, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderFirstName", DbType="VarChar(50)")] string surrenderFirstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderLastName", DbType="VarChar(50)")] string surrenderLastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderRole", DbType="VarChar(50)")] string surrenderRole, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemPhoto", DbType="NVarChar(MAX)")] string itemPhoto)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), itemID, itemName, itemColor, itemDesc, itemLocation, surrenderFirstName, surrenderLastName, surrenderRole, itemPhoto);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Claim")]

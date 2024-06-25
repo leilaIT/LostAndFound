@@ -112,4 +112,23 @@
     <Parameter Name="ItemStatus" Parameter="itemStatus" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.Procedure_UpdateClaimedItem" Method="Procedure_UpdateClaimedItem">
+    <Parameter Name="ClaimID" Parameter="claimID" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ClaimFirstName" Parameter="claimFirstName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ClaimLastName" Parameter="claimLastName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ClaimRole" Parameter="claimRole" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Procedure_UpdateMissingItem" Method="Procedure_UpdateMissingItem">
+    <Parameter Name="ItemID" Parameter="itemID" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ItemName" Parameter="itemName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ItemColor" Parameter="itemColor" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ItemDesc" Parameter="itemDesc" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ItemLocation" Parameter="itemLocation" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="SurrenderFirstName" Parameter="surrenderFirstName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="SurrenderLastName" Parameter="surrenderLastName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="SurrenderRole" Parameter="surrenderRole" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ItemPhoto" Parameter="itemPhoto" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

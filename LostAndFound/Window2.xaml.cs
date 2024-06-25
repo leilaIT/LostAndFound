@@ -21,22 +21,29 @@ namespace LostAndFound
     public partial class Window2 : Window
     {
         LostAndFoundDataContext _lfDC = null;
-        private string itemID = null;
-        private string claimID = null;
-        private string searchTerm = null;
+        public string itemID = null;
+        public string claimID = null;
+        public string searchTerm = null;
+        public static Page1 page1 = new Page1();
+        public static Page2 page2 = new Page2();
+        private string checkcurrentClaimID = null;
         public Window2(string username)
         {
             InitializeComponent();
             _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_DatabaseConnectionString);
             WelcomeAdmin.Text = $"Welcome {username}!";
             tbdate.Text = DateTime.Now.ToString("MMMM dd, yyyy");
+            MainFrame.Navigate(page1);
             populateListbox();
+            page1.FalseHitTest();
+            page1.pic.Source = new BitmapImage(new Uri("No photo.jpg", UriKind.RelativeOrAbsolute));
         }
         /// <summary>
         /// this method will populate the listbox
         /// </summary>
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
+            page1.clearPage1();
             MainWindow mw = new MainWindow();
             mw.Show();
             this.Close();
@@ -73,17 +80,18 @@ namespace LostAndFound
                     {
                         foreach(var item in getItem)
                         {
-                            btnItemID.Content = item.Item_ID;
-                            tbItem_Name.Text = item.Item_Name;
-                            tbItem_Status.Text = item.Item_Status;
-                            tbItem_Location.Text = item.Item_Location;
-                            cbItem_Color.Text = item.Item_Color;
-                            tbItem_Desc.Text = item.Item_Desc;
-                            tbSurrender_FirstName.Text = item.Surrender_FirstName;
-                            tbSurrender_LastName.Text = item.Surrender_LastName;
-                            cbSurrender_Role.Text = item.Surrender_Role;
-                            tbSurrender_Date.Text = item.Surrender_Date.ToString();
-                            tbSurrenderStaff_ID.Text = item.Staff_ID;
+                            page1.pic.Source = new BitmapImage(new Uri(item.Item_Photo, UriKind.RelativeOrAbsolute));
+                            page1.btnItemID.Content = item.Item_ID;
+                            page1.tbItem_Name.Text = item.Item_Name;
+                            page1.tbItem_Status.Text = item.Item_Status;
+                            page1.tbItem_Location.Text = item.Item_Location;
+                            page1.cbItem_Color.Text = item.Item_Color;
+                            page1.tbItem_Desc.Text = item.Item_Desc;
+                            page1.tbSurrender_FirstName.Text = item.Surrender_FirstName;
+                            page1.tbSurrender_LastName.Text = item.Surrender_LastName;
+                            page1.cbSurrender_Role.Text = item.Surrender_Role;
+                            page1.tbSurrender_Date.Text = item.Surrender_Date.ToString();
+                            page1.tbSurrenderStaff_ID.Text = item.Staff_ID;
 
                             var getClaim = from c in _lfDC.Claims
                                            where c.Claim_ID == item.Claim_ID
@@ -91,7 +99,7 @@ namespace LostAndFound
 
                             foreach(var claim in getClaim)
                             {
-                                btnClaimID.Content = claim.Claim_ID;
+                                page1.btnClaimID.Content = claim.Claim_ID;
                                 if(btnEdit.Visibility == Visibility.Collapsed)
                                 {
                                     if (claim.Claim_ID == "NO-CLM")
@@ -99,11 +107,11 @@ namespace LostAndFound
                                     else
                                         btnUpdateClaim.IsEnabled = false;
                                 }
-                                tbClaim_FirstName.Text = claim.Claim_FirstName;
-                                tbClaim_LastName.Text = claim.Claim_LastName;
-                                cbClaim_Role.Text = claim.Claim_Role;
-                                tbClaim_Date.Text = claim.Claim_Date.ToString();
-                                tbClaimStaff_ID.Text = claim.Staff_ID;
+                                page1.tbClaim_FirstName.Text = claim.Claim_FirstName;
+                                page1.tbClaim_LastName.Text = claim.Claim_LastName;
+                                page1.cbClaim_Role.Text = claim.Claim_Role;
+                                page1.tbClaim_Date.Text = claim.Claim_Date.ToString();
+                                page1.tbClaimStaff_ID.Text = claim.Staff_ID;
                             }
                         }
                     }
@@ -112,126 +120,25 @@ namespace LostAndFound
         }
         #endregion
 
-        #region itemID_claimID_buttons
-        private void btnClaimID_Click(object sender, RoutedEventArgs e)
-        {
-            //visible
-            lblClaim_FirstName.Visibility = Visibility.Visible;
-            tbClaim_FirstName.Visibility = Visibility.Visible;
-
-            lblClaim_LastName.Visibility = Visibility.Visible;
-            tbClaim_LastName.Visibility = Visibility.Visible;
-
-            lblClaim_Role.Visibility = Visibility.Visible;
-            cbClaim_Role.Visibility = Visibility.Visible;
-
-            lblClaim_Date.Visibility = Visibility.Visible;
-            tbClaim_Date.Visibility = Visibility.Visible;
-
-            tbClaimStaff_ID.Visibility = Visibility.Visible;
-            if(btnEdit.Visibility == Visibility.Collapsed)
-                btnUpdateClaim.Visibility = Visibility.Visible;
-
-            //collapse
-            lblSurrender_FirstName.Visibility = Visibility.Collapsed;
-            tbSurrender_FirstName.Visibility = Visibility.Collapsed;
-
-            lblSurrender_LastName.Visibility = Visibility.Collapsed;
-            tbSurrender_LastName.Visibility = Visibility.Collapsed;
-
-            lblSurrender_Role.Visibility = Visibility.Collapsed;
-            cbSurrender_Role.Visibility = Visibility.Collapsed;
-
-            lblSurrender_Date.Visibility = Visibility.Collapsed;
-            tbSurrender_Date.Visibility = Visibility.Collapsed;
-
-            tbSurrenderStaff_ID.Visibility = Visibility.Collapsed;
-        }
-        private void btnItemID_Click(object sender, RoutedEventArgs e)
-        {
-            //visible
-            lblSurrender_FirstName.Visibility = Visibility.Visible;
-            tbSurrender_FirstName.Visibility = Visibility.Visible;
-
-            lblSurrender_LastName.Visibility = Visibility.Visible;
-            tbSurrender_LastName.Visibility = Visibility.Visible;
-
-            lblSurrender_Role.Visibility = Visibility.Visible;
-            cbSurrender_Role.Visibility = Visibility.Visible;
-
-            lblSurrender_Date.Visibility = Visibility.Visible;
-            tbSurrender_Date.Visibility = Visibility.Visible;
-
-            tbSurrenderStaff_ID.Visibility = Visibility.Visible;
-
-            //collapse
-            lblClaim_FirstName.Visibility = Visibility.Collapsed;
-            tbClaim_FirstName.Visibility = Visibility.Collapsed;
-
-            lblClaim_LastName.Visibility = Visibility.Collapsed;
-            tbClaim_LastName.Visibility = Visibility.Collapsed;
-
-            lblClaim_Role.Visibility = Visibility.Collapsed;
-            cbClaim_Role.Visibility = Visibility.Collapsed;
-
-            lblClaim_Date.Visibility = Visibility.Collapsed;
-            tbClaim_Date.Visibility = Visibility.Collapsed;
-
-            tbClaimStaff_ID.Visibility = Visibility.Collapsed;
-
-            btnUpdateClaim.Visibility = Visibility.Collapsed;
-        }
-        #endregion
-
-        #region edit_info_stuff
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            VerifyStaffWindow vsw = new VerifyStaffWindow();
-            vsw.Closed += VerifyStaffWindow_Closed;
-            btnReport.IsEnabled = false;
-            btnEdit.IsEnabled = false;
-            btnLogout.IsEnabled = false;
-            Items_Listbox.IsEnabled = false;
-            vsw.Show();
-        }
-        private void VerifyStaffWindow_Closed(object sender, EventArgs e)
-        {
-            btnEdit.IsEnabled = true;
-            btnReport.IsEnabled = true;
-            btnLogout.IsEnabled = true;
-            Items_Listbox.IsEnabled = true;
-            if (StaticWindow.verifyStaff)
-            {
-                if (btnEdit.Visibility == Visibility.Collapsed)
-                    btnUpdateClaim.Visibility = Visibility.Visible;
-                btnEdit.Visibility = Visibility.Collapsed;
-                btnSave.Visibility = Visibility.Visible;
-                StaticWindow.verifyStaff = false;
-
-                gridDisplay.IsHitTestVisible = true;
-            }
-        }
-        #endregion
-
         #region report_a_lost_item
         private void btnReport_Click(object sender, RoutedEventArgs e)
         {
+            //clear everything first
+            page2.clearPage2();
+            MainFrame.Navigate(page2);
             Items_Listbox.IsEnabled = false;
-            gridDisplay.Visibility = Visibility.Collapsed;
-            gridAdd.Visibility = Visibility.Visible;
+            page1.gridDisplay.Visibility = Visibility.Collapsed;
+            
+            page2.gridAdd.Visibility = Visibility.Visible;
             btnBack.Visibility = Visibility.Visible;
             btnAddItem.Visibility = Visibility.Visible;
             btnEdit.Visibility = Visibility.Collapsed;
-            btnItemID.Content = "New Item Reported";
-            btnItemID.IsEnabled = false;
-            btnClaimID.Content = "Not Claimed Yet";
-            btnClaimID.IsEnabled = false;
+            page2.tbAddItem_Status.Text = "Missing";
 
-            tbAddItem_Status.Text = "Missing";
-            tbAddSurrender_Date.Text = DateTime.Now.ToString();
-            tbAddSurrenderStaff_ID.Text = StaticWindow.currentStaffid;
-            cbAddItem_Color.SelectedIndex = -1;
-            cbAddSurrender_Role.SelectedIndex = -1;
+            page2.tbAddSurrender_Date.Text = DateTime.Now.ToString();
+            page2.tbAddSurrenderStaff_ID.Text = StaticClass.currentStaffid;
+            page2.cbAddItem_Color.SelectedIndex = -1;
+            page2.cbAddSurrender_Role.SelectedIndex = -1;
         }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -239,22 +146,23 @@ namespace LostAndFound
         }
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
-            if(tbAddItem_Name.Text != "" && tbAddItem_Location.Text != "" && cbAddItem_Color.SelectedIndex != -1 && tbAddItem_Desc.Text != "" &&
-               tbAddSurrender_FirstName.Text != "" && tbAddSurrender_LastName.Text != "" && cbAddSurrender_Role.SelectedIndex != -1)
+            if(page2.tbAddItem_Name.Text != "" && page2.tbAddItem_Location.Text != "" && page2.cbAddItem_Color.SelectedIndex != -1 && 
+               page2.tbAddItem_Desc.Text != "" && page2.tbAddSurrender_FirstName.Text != "" && page2.tbAddSurrender_LastName.Text != "" && 
+               page2.cbAddSurrender_Role.SelectedIndex != -1 && page2.picfileName != "")
             {
                 _lfDC.Procedure_AddMissingItem(itemID
-                                              , tbAddItem_Name.Text
-                                              , cbItem_Color.Text
-                                              , tbAddItem_Desc.Text
-                                              , tbAddItem_Location.Text
-                                              , tbAddSurrender_FirstName.Text
-                                              , tbAddSurrender_LastName.Text
-                                              , cbSurrender_Role.Text
+                                              , page2.tbAddItem_Name.Text
+                                              , page2.cbAddItem_Color.Text
+                                              , page2.tbAddItem_Desc.Text
+                                              , page2.tbAddItem_Location.Text
+                                              , page2.tbAddSurrender_FirstName.Text
+                                              , page2.tbAddSurrender_LastName.Text
+                                              , page2.cbAddSurrender_Role.Text
                                               , null
-                                              , StaticWindow.currentStaffid
+                                              , page2.tbAddSurrenderStaff_ID.Text
                                               , claimID
                                               , null
-                                              , "Assets/No Photo.jpg");
+                                              , page2.picfileName);
                 MessageBox.Show("Item added successfully");
 
                 _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_DatabaseConnectionString);
@@ -268,21 +176,107 @@ namespace LostAndFound
         }
         #endregion
 
+        #region edit_info_stuff
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            VerifyStaffWindow vsw = new VerifyStaffWindow();
+            vsw.Closed += VerifyStaffWindow_Closed;
+            btnReport.IsEnabled = false;
+            btnEdit.IsEnabled = false;
+            btnLogout.IsEnabled = false;
+            Items_Listbox.IsEnabled = false;
+            page1.btnItemID.IsEnabled = false;
+            page1.btnClaimID.IsEnabled = false;
+            vsw.Show();
+        }
+        private void VerifyStaffWindow_Closed(object sender, EventArgs e)
+        {
+            btnEdit.IsEnabled = true;
+            btnReport.IsEnabled = true;
+            btnLogout.IsEnabled = true;
+            Items_Listbox.IsEnabled = true;
+            if (StaticClass.verifyStaff)
+            {
+                page1.TrueHitTest();
+                checkcurrentClaimID = page1.btnClaimID.Content.ToString();
+                if (page1.tbClaim_FirstName.Visibility == Visibility.Visible)
+                {
+                    if (checkcurrentClaimID == "NO-CLM")
+                    {
+                        btnUpdateClaim.Visibility = Visibility.Visible;
+                        page1.tbClaim_Date.Text = DateTime.Now.ToString();
+                        page1.tbClaimStaff_ID.IsEnabled = false;
+                        page1.tbClaimStaff_ID.Text = StaticClass.currentStaffid;
+                        page1.btnClear.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                        btnSave.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    page1.btnUpload.Visibility = Visibility.Visible;
+                    page1.btnConfirm.Visibility = Visibility.Visible;
+                    btnSave.Visibility = Visibility.Visible;
+                    page1.tbSelectedpic.Visibility = Visibility.Visible;
+                }
+
+                btnEdit.Visibility = Visibility.Collapsed;
+                btnReport.Visibility = Visibility.Collapsed;
+                btnBack.Visibility = Visibility.Visible;
+
+                StaticClass.verifyStaff = false;
+
+                page1.btnItemID.IsEnabled = true;
+                page1.btnClaimID.IsEnabled = true;
+                page1.gridDisplay.IsHitTestVisible = true;
+            }
+        }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (page1.tbSurrender_FirstName.Visibility == Visibility.Visible)
+            {
+                _lfDC.Procedure_UpdateMissingItem(page1.btnItemID.Content.ToString()
+                                                 , page1.tbItem_Name.Text
+                                                 , page1.cbItem_Color.Text
+                                                 , page1.tbItem_Desc.Text
+                                                 , page1.tbItem_Location.Text
+                                                 , page1.tbSurrender_FirstName.Text
+                                                 , page1.tbSurrender_LastName.Text
+                                                 , page1.cbSurrender_Role.Text
+                                                 , page1.picfileName);
+                MessageBox.Show("Missing item information was updated successfully!");
+            }
+            else
+            {
+                _lfDC.Procedure_UpdateClaimedItem(page1.btnClaimID.Content.ToString()
+                                                 , page1.tbClaim_FirstName.Text
+                                                 , page1.tbClaim_LastName.Text
+                                                 , page1.cbClaim_Role.Text
+                                                 );
+                MessageBox.Show("Claimed item information was updated successfully!");
+            }
+            _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_DatabaseConnectionString);
+            page1.btnUpload.Visibility = Visibility.Collapsed;
+            page1.btnConfirm.Visibility = Visibility.Collapsed;
+            populateListbox();
+            backToView();
+        }
+        #endregion
+
         #region recording_a_claimed_item
         private void btnUpdateClaim_Click(object sender, RoutedEventArgs e)
         {
-            if (tbClaim_FirstName.Text != "None" && tbClaim_LastName.Text != "None" && cbSurrender_Role.SelectedIndex != -1)
+            if (page1.tbClaim_FirstName.Text != "None" && page1.tbClaim_LastName.Text != "None" && page1.cbSurrender_Role.SelectedIndex != -1)
             {
-                _lfDC.Procedure_AddClaimedItem(btnItemID.Content.ToString()
+                _lfDC.Procedure_AddClaimedItem(page1.btnItemID.Content.ToString()
                                               , claimID
-                                              , tbClaim_FirstName.Text
-                                              , tbClaim_LastName.Text
-                                              , cbClaim_Role.Text
+                                              , page1.tbClaim_FirstName.Text
+                                              , page1.tbClaim_LastName.Text
+                                              , page1.cbClaim_Role.Text
                                               , null
-                                              , StaticWindow.currentStaffid
+                                              , StaticClass.currentStaffid
                                               , null);
-
-                MessageBox.Show("Item added successfully");
+                MessageBox.Show("Item recorded as CLAIMED successfully.");
 
                 _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_DatabaseConnectionString);
                 populateListbox();
@@ -294,24 +288,25 @@ namespace LostAndFound
             }
         }
         #endregion
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            backToView();
-        }
         private void backToView()
         {
+            page1.clearPage1();
+            page1.FalseHitTest();
             Items_Listbox.IsEnabled = true;
-            gridAdd.Visibility = Visibility.Collapsed;
-            gridDisplay.Visibility = Visibility.Visible;
+            page1.btnItemID.IsEnabled = true;
+            page1.btnClaimID.IsEnabled = true;
+            Items_Listbox.SelectedIndex = -1;
+            MainFrame.Navigate(page1);
+            page2.gridAdd.Visibility = Visibility.Collapsed;
+            page1.gridDisplay.Visibility = Visibility.Visible;
             btnBack.Visibility = Visibility.Collapsed;
             btnSave.Visibility = Visibility.Collapsed;
-            btnAddItem.Visibility = Visibility.Collapsed;
-            btnEdit.Visibility = Visibility.Visible;
-            btnItemID.Content = "Item ID";
-            btnClaimID.Content = "Claim ID";
-            btnItemID.IsEnabled = true;
-            btnClaimID.IsEnabled = true;
             btnUpdateClaim.Visibility = Visibility.Collapsed;
+            btnAddItem.Visibility = Visibility.Collapsed;
+            btnReport.Visibility = Visibility.Visible;
+            btnEdit.Visibility = Visibility.Visible;
+            page1.btnClear.Visibility = Visibility.Visible;
+            page1.tbSelectedpic.Visibility = Visibility.Collapsed;
         }
 
         #region filter stuff

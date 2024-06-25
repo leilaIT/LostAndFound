@@ -8,52 +8,190 @@
       d:DesignHeight="900" d:DesignWidth="1000"
       Title="Page1">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="400"/>
-        </Grid.ColumnDefinitions>
+    <ScrollViewer Name="scrollView" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid x:Name="gridDisplay">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="130"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="690"/>
+                </Grid.RowDefinitions>
 
-            <Button Margin="25,10,214,10" Content="Item ID"
-                    FontFamily="Segoe UI Black"/>
-            <Button Margin="214,10,25,10" Content="Claim ID"
-                    FontFamily="Segoe UI Black"/>
+                <Button x:Name="btnItemID" Margin="25,10,214,10" Content="Item ID"
+                    FontFamily="Segoe UI Black" Click="btnItemID_Click"/>
+                <Button x:Name="btnClaimID" Margin="214,10,25,10" Content="Claim ID"
+                    FontFamily="Segoe UI Black" Click="btnClaimID_Click"/>
 
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
 
-                <Border Margin="25,10,0,0" HorizontalAlignment="Left" Width="150" 
-                        BorderBrush="Black" BorderThickness="5"/>
-                <Button Grid.Column="1" Margin="40,15,60,85" Content="TAKE PHOTO"/>
-                <Button Grid.Column="1" Margin="40,85,60,15" Content="UPLOAD"/>
+                    <Image x:Name="pic" Grid.Column="0" Margin="25,0,0,40" Width="158" 
+                       HorizontalAlignment="Left" Stretch="UniformToFill"/>
+                    
+                    <TextBox x:Name="tbSelectedpic" Visibility="Collapsed" Margin="25,174,-175,0" Height="18" VerticalAlignment="Top"/>
+
+                    <Button x:Name="btnUpload" Visibility="Collapsed" Grid.Column="1" Margin="40,10,60,145" Content="UPLOAD" Grid.ColumnSpan="2" Click="btnUpload_Click"
+                        FontSize="10" FontFamily="Segoe UI Black">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnConfirm" Grid.Column="1" Margin="40,82,60,73" Content="CONFIRM" Grid.ColumnSpan="2"
+                        FontSize="10" FontFamily="Segoe UI Black" IsEnabled="False" Visibility="Collapsed" Click="btnConfirm_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <Label x:Name="lblItem_Name" Grid.Row="2" Margin="25,20,25,640" Content="Item Name"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbItem_Name" Grid.Row="2" Margin="110,20,25,640"
+                   FontSize="13" FontFamily="Cascadia Code"
+                   VerticalContentAlignment="Center"/>
+
+                <Label x:Name="lblItem_Status" Grid.Row="2" Margin="25,70,25,590" Content="Item Status"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbItem_Status" Grid.Row="2" Margin="110,70,25,590"
+                   FontSize="13" FontFamily="Cascadia Code"
+                   VerticalContentAlignment="Center"/>
+
+                <Label x:Name="lblItem_Color" Grid.Row="2" Margin="25,120,25,540" Content="Item Color"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+
+                <ComboBox x:Name="cbItem_Color" Grid.Row="2" Margin="110,120,25,540"
+                      FontSize="13" FontFamily="Cascadia Code"
+                      VerticalContentAlignment="Center">
+                    <ComboBoxItem>Red</ComboBoxItem>
+                    <ComboBoxItem>Orange</ComboBoxItem>
+                    <ComboBoxItem>Yellow</ComboBoxItem>
+                    <ComboBoxItem>Green</ComboBoxItem>
+                    <ComboBoxItem>Blue</ComboBoxItem>
+                    <ComboBoxItem>Violet</ComboBoxItem>
+                    <ComboBoxItem>Pink</ComboBoxItem>
+                    <ComboBoxItem>Black</ComboBoxItem>
+                    <ComboBoxItem>White</ComboBoxItem>
+                    <ComboBoxItem>Gray</ComboBoxItem>
+                    <ComboBoxItem>Brown</ComboBoxItem>
+                    <ComboBoxItem>Beige</ComboBoxItem>
+                    <ComboBoxItem>Multi-color</ComboBoxItem>
+                    <ComboBoxItem>Transparent</ComboBoxItem>
+                </ComboBox>
+
+                <Label x:Name="lblItem_Desc" Grid.Row="2" Margin="25,170,25,490" Content="Item Description"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbItem_Desc" Grid.Row="2" Margin="25,220,25,390"
+                     FontSize="13" FontFamily="Cascadia Code" TextWrapping="Wrap"/>
+
+                <Label x:Name="lblItem_Location" Grid.Row="2" Margin="25,320,25,340" Content="Item Location"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbItem_Location" Grid.Row="2" Margin="125,320,25,340"
+                     FontSize="13" FontFamily="Cascadia Code"
+                     VerticalContentAlignment="Center"/>
+
+                <Label x:Name="lblSurrender_FirstName" Grid.Row="2" Margin="25,370,25,290" Content="Surrender First Name"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbSurrender_FirstName" Grid.Row="2" Margin="175,370,25,290"
+                     FontSize="13" FontFamily="Cascadia Code"
+                     VerticalContentAlignment="Center"/>
+
+                <Label x:Name="lblClaim_FirstName" Visibility="Collapsed" Grid.Row="2" Margin="25,370,25,290" Content="Claimer's First Name"
+                    FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbClaim_FirstName" Visibility="Collapsed" Grid.Row="2" Margin="175,370,25,290"
+                    FontSize="13" FontFamily="Cascadia Code"
+                     VerticalContentAlignment="Center"/>
+
+                <Label x:Name="lblSurrender_LastName" Grid.Row="2" Margin="25,420,25,240" Content="Surrender Last Name"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbSurrender_LastName" Grid.Row="2" Margin="175,420,25,240"
+                     FontSize="13" FontFamily="Cascadia Code"
+                     VerticalContentAlignment="Center"/>
+
+                <Label x:Name="lblClaim_LastName" Visibility="Collapsed" Grid.Row="2" Margin="25,420,25,240" Content="Claimer's Last Name"
+                    FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbClaim_LastName" Visibility="Collapsed" Grid.Row="2" Margin="175,420,25,240"
+                    FontSize="13" FontFamily="Cascadia Code"
+                    VerticalContentAlignment="Center"/>
+
+                <Label x:Name="lblSurrender_Role" Grid.Row="2" Margin="25,470,25,190" Content="Surrender Role"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <ComboBox x:Name="cbSurrender_Role" Grid.Row="2" Margin="135,470,25,190"
+                      FontSize="13" FontFamily="Cascadia Code"
+                      VerticalContentAlignment="Center">
+                    <ComboBoxItem>Student</ComboBoxItem>
+                    <ComboBoxItem>Employee</ComboBoxItem>
+                </ComboBox>
+
+                <Label x:Name="lblClaim_Role" Visibility="Collapsed" Grid.Row="2" Margin="25,470,25,190" Content="Claimer's Role"
+                    FontSize="13" FontFamily="Segoe UI Black"/>
+                <ComboBox x:Name="cbClaim_Role" Visibility="Collapsed" Grid.Row="2" Margin="135,470,25,190"
+                    FontSize="13" FontFamily="Cascadia Code"
+                    VerticalContentAlignment="Center">
+                    <ComboBoxItem>Student</ComboBoxItem>
+                    <ComboBoxItem>Employee</ComboBoxItem>
+                </ComboBox>
+
+                <Label x:Name="lblSurrender_Date" Grid.Row="2" Margin="25,520,25,140" Content="Surrender Date"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBlock x:Name="tbSurrender_Date" Grid.Row="2" Margin="140,519,25,140"
+                       VerticalAlignment="Center"
+                       FontSize="13" FontFamily="Cascadia Code" Foreground="Red"/>
+
+                <Label x:Name="lblClaim_Date" Visibility="Collapsed" Grid.Row="2" Margin="25,520,25,140" Content="Claim Date"
+                    FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBlock x:Name="tbClaim_Date" Visibility="Collapsed" Grid.Row="2" Margin="140,519,25,140"
+                    VerticalAlignment="Center"
+                    FontSize="13" FontFamily="Cascadia Code" Foreground="Red"/>
+
+
+                <Label x:Name="lblStaff_ID" Grid.Row="2" Margin="25,570,25,90" Content="Staff ID"
+                   FontSize="13" FontFamily="Segoe UI Black"/>
+                <TextBox x:Name="tbSurrenderStaff_ID" Grid.Row="2" Margin="95,570,25,90"
+                   FontSize="13" FontFamily="Cascadia Code"
+                   VerticalContentAlignment="Center"/>
+                <TextBox x:Name="tbClaimStaff_ID" Grid.Row="2" Margin="95,570,25,90"
+                    FontSize="13" FontFamily="Cascadia Code"
+                    VerticalContentAlignment="Center"/>
+
+                <StackPanel Grid.Row="2" Margin="15,585,15,18">
+                    <Button x:Name="btnClear" Grid.Row="2" Margin="20,30,20,20" Content="CLEAR"
+        FontSize="18" FontFamily="Segoe UI Black" Click="btnClear_Click" Width="157">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
             </Grid>
-
-            <TextBox Grid.Row="2" Margin="0,20,0,570"/>
-            <TextBox Grid.Row="2" Margin="0,70,0,520"/>
-            <TextBox Grid.Row="2" Margin="0,120,0,470"/>
-            <Label Grid.Row="2" Margin="0,170,0,420" Content="text"/>
-            <TextBox Grid.Row="2" Margin="0,220,0,320"/>
-            <TextBox Grid.Row="2" Margin="0,320,0,270"/>
-            <TextBox Grid.Row="2" Margin="0,370,0,220"/>
-
-            <TextBox Grid.Row="2" Margin="0,420,0,170"/>
-            <TextBox Grid.Row="2" Margin="0,470,0,120"/>
-            <TextBox Grid.Row="2" Margin="0,520,0,70"/>
-            <TextBox Grid.Row="2" Margin="0,570,0,20"/>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>

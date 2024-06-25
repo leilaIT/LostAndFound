@@ -61,7 +61,7 @@
         <classShapeMoniker Id="f8883dff-fade-4c1b-9139-a5b00b126317" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.808595 : 3.2131982421875); (9.808595 : 4.0569502421875); (9.20637833333333 : 4.0569502421875 : JumpStart); (9.03971166666667 : 4.0569502421875 : JumpEnd); (8.125 : 4.0569502421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(9.808595 : 3.2131982421875); (9.808595 : 4.0569502421875); (8.125 : 4.0569502421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LostAndFoundDataContext/Staff/Staff_Log" />
       <nodes>
         <classShapeMoniker Id="4c997f20-822f-4413-9057-4e2a49542704" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LostAndFound
 {
-    internal static class StaticWindow
+    internal static class StaticClass
     {
         public static string currentStaffname = null;
         public static string currentStaffpass = null;

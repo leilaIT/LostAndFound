@@ -11,12 +11,6 @@
             <ImageBrush ImageSource="/Assets/Log-in.png"/>
         </Grid.Background>
 
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>-->
-
         <Label Content="User ID:" HorizontalAlignment="Left" 
                Margin="389,207,0,0" VerticalAlignment="Top"
                FontSize="20" FontFamily="Segoe UI Black"/>
