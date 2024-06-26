@@ -115,7 +115,15 @@ namespace LostAndFound
         #endregion
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            clearPage2();
+            tbAddItem_Name.Clear();
+            tbAddItem_Status.Text = "Missing";
+            cbAddItem_Color.SelectedIndex = -1;
+            tbAddItem_Desc.Text = "";
+            tbAddItem_Location.Clear();
+            tbAddSurrender_FirstName.Clear();
+            tbAddSurrender_LastName.Clear();
+            cbAddSurrender_Role.SelectedIndex = -1;
+            tbAddSurrenderStaff_ID.Text = StaticClass.currentStaffid;
         }
         public void clearPage2()
         {

@@ -23,7 +23,6 @@ namespace LostAndFound
         {
             //this page is for viewing items
             InitializeComponent();
-            _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_DatabaseConnectionString);
 
             picPath = @"C:\All Items\";
             _default.UriSource = new Uri(picPath + "No photo.jpg");
@@ -98,7 +97,19 @@ namespace LostAndFound
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            clearPage1();
+            tbItem_Name.Clear();
+            tbItem_Status.Text = "Missing";
+            cbItem_Color.SelectedIndex = -1;
+            tbItem_Desc.Text = "";
+            tbItem_Location.Clear();
+            tbSurrender_FirstName.Clear();
+            tbSurrender_LastName.Clear();
+            cbSurrender_Role.SelectedIndex = -1;
+            tbSurrenderStaff_ID.Text = StaticClass.currentStaffid;
+            tbClaim_FirstName.Clear();
+            tbClaim_LastName.Clear();
+            cbClaim_Role.SelectedIndex = -1;
+            tbClaimStaff_ID.Text = StaticClass.currentStaffid;
         }
         public void clearPage1()
         {

@@ -34,5 +34,17 @@ namespace LostAndFound.Properties {
                 return ((string)(this["Lost_Found_DatabaseConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-34HFC3NA\\SQLEXPRESS;Initial Catalog=\"Lost&Found Database 2\";In" +
+            "tegrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=Tr" +
+            "ue")]
+        public string Lost_Found_Database_2ConnectionString {
+            get {
+                return ((string)(this["Lost_Found_Database_2ConnectionString"]));
+            }
+        }
     }
 }

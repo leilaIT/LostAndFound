@@ -22,7 +22,7 @@ namespace LostAndFound
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Lost&Found Database")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Lost&Found Database 2")]
 	public partial class LostAndFoundDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,12 +30,12 @@ namespace LostAndFound
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertClaim(Claim instance);
-    partial void UpdateClaim(Claim instance);
-    partial void DeleteClaim(Claim instance);
     partial void InsertItem(Item instance);
     partial void UpdateItem(Item instance);
     partial void DeleteItem(Item instance);
+    partial void InsertClaim(Claim instance);
+    partial void UpdateClaim(Claim instance);
+    partial void DeleteClaim(Claim instance);
     partial void InsertLog(Log instance);
     partial void UpdateLog(Log instance);
     partial void DeleteLog(Log instance);
@@ -48,7 +48,7 @@ namespace LostAndFound
     #endregion
 		
 		public LostAndFoundDataContext() : 
-				base(global::LostAndFound.Properties.Settings.Default.Lost_Found_DatabaseConnectionString, mappingSource)
+				base(global::LostAndFound.Properties.Settings.Default.Lost_Found_Database_2ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -77,19 +77,19 @@ namespace LostAndFound
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Claim> Claims
-		{
-			get
-			{
-				return this.GetTable<Claim>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Item> Items
 		{
 			get
 			{
 				return this.GetTable<Item>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Claim> Claims
+		{
+			get
+			{
+				return this.GetTable<Claim>();
 			}
 		}
 		
@@ -117,6 +117,13 @@ namespace LostAndFound
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_AddClaimedItem")]
+		public int Procedure_AddClaimedItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SelectedItemID", DbType="VarChar(50)")] string selectedItemID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimID", DbType="VarChar(50)")] string claimID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimFirstName", DbType="VarChar(50)")] string claimFirstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimLastName", DbType="VarChar(50)")] string claimLastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimRole", DbType="VarChar(50)")] string claimRole, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimDate", DbType="DateTime")] System.Nullable<System.DateTime> claimDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StaffID", DbType="VarChar(50)")] string staffID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemStatus", DbType="VarChar(50)")] string itemStatus)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), selectedItemID, claimID, claimFirstName, claimLastName, claimRole, claimDate, staffID, itemStatus);
+			return ((int)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_AddMissingItem")]
 		public int Procedure_AddMissingItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemID", DbType="VarChar(50)")] string itemID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemName", DbType="VarChar(50)")] string itemName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemColor", DbType="VarChar(50)")] string itemColor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemDesc", DbType="VarChar(MAX)")] string itemDesc, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemLocation", DbType="VarChar(50)")] string itemLocation, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderFirstName", DbType="VarChar(50)")] string surrenderFirstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderLastName", DbType="VarChar(50)")] string surrenderLastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderRole", DbType="VarChar(50)")] string surrenderRole, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SurrenderDate", DbType="DateTime")] System.Nullable<System.DateTime> surrenderDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StaffID", DbType="VarChar(50)")] string staffID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimID", DbType="VarChar(50)")] string claimID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemStatus", DbType="VarChar(50)")] string itemStatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemPhoto", DbType="NVarChar(MAX)")] string itemPhoto)
 		{
@@ -131,13 +138,6 @@ namespace LostAndFound
 			return ((ISingleResult<Procedure_SearchItemsResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_AddClaimedItem")]
-		public int Procedure_AddClaimedItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SelectedItemID", DbType="VarChar(50)")] string selectedItemID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimID", DbType="VarChar(50)")] string claimID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimFirstName", DbType="VarChar(50)")] string claimFirstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimLastName", DbType="VarChar(50)")] string claimLastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimRole", DbType="VarChar(50)")] string claimRole, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimDate", DbType="DateTime")] System.Nullable<System.DateTime> claimDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StaffID", DbType="VarChar(50)")] string staffID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemStatus", DbType="VarChar(50)")] string itemStatus)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), selectedItemID, claimID, claimFirstName, claimLastName, claimRole, claimDate, staffID, itemStatus);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Procedure_UpdateClaimedItem")]
 		public int Procedure_UpdateClaimedItem([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimID", DbType="VarChar(50)")] string claimID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimFirstName", DbType="VarChar(50)")] string claimFirstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimLastName", DbType="VarChar(50)")] string claimLastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClaimRole", DbType="VarChar(50)")] string claimRole)
 		{
@@ -150,285 +150,6 @@ namespace LostAndFound
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), itemID, itemName, itemColor, itemDesc, itemLocation, surrenderFirstName, surrenderLastName, surrenderRole, itemPhoto);
 			return ((int)(result.ReturnValue));
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Claim")]
-	public partial class Claim : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Claim_ID;
-		
-		private string _Claim_FirstName;
-		
-		private string _Claim_LastName;
-		
-		private string _Claim_Role;
-		
-		private System.Nullable<System.DateTime> _Claim_Date;
-		
-		private string _Staff_ID;
-		
-		private EntitySet<Item> _Items;
-		
-		private EntitySet<Log> _Logs;
-		
-		private EntityRef<Staff> _Staff;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnClaim_IDChanging(string value);
-    partial void OnClaim_IDChanged();
-    partial void OnClaim_FirstNameChanging(string value);
-    partial void OnClaim_FirstNameChanged();
-    partial void OnClaim_LastNameChanging(string value);
-    partial void OnClaim_LastNameChanged();
-    partial void OnClaim_RoleChanging(string value);
-    partial void OnClaim_RoleChanged();
-    partial void OnClaim_DateChanging(System.Nullable<System.DateTime> value);
-    partial void OnClaim_DateChanged();
-    partial void OnStaff_IDChanging(string value);
-    partial void OnStaff_IDChanged();
-    #endregion
-		
-		public Claim()
-		{
-			this._Items = new EntitySet<Item>(new Action<Item>(this.attach_Items), new Action<Item>(this.detach_Items));
-			this._Logs = new EntitySet<Log>(new Action<Log>(this.attach_Logs), new Action<Log>(this.detach_Logs));
-			this._Staff = default(EntityRef<Staff>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Claim_ID
-		{
-			get
-			{
-				return this._Claim_ID;
-			}
-			set
-			{
-				if ((this._Claim_ID != value))
-				{
-					this.OnClaim_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Claim_ID = value;
-					this.SendPropertyChanged("Claim_ID");
-					this.OnClaim_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_FirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Claim_FirstName
-		{
-			get
-			{
-				return this._Claim_FirstName;
-			}
-			set
-			{
-				if ((this._Claim_FirstName != value))
-				{
-					this.OnClaim_FirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._Claim_FirstName = value;
-					this.SendPropertyChanged("Claim_FirstName");
-					this.OnClaim_FirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_LastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Claim_LastName
-		{
-			get
-			{
-				return this._Claim_LastName;
-			}
-			set
-			{
-				if ((this._Claim_LastName != value))
-				{
-					this.OnClaim_LastNameChanging(value);
-					this.SendPropertyChanging();
-					this._Claim_LastName = value;
-					this.SendPropertyChanged("Claim_LastName");
-					this.OnClaim_LastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_Role", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Claim_Role
-		{
-			get
-			{
-				return this._Claim_Role;
-			}
-			set
-			{
-				if ((this._Claim_Role != value))
-				{
-					this.OnClaim_RoleChanging(value);
-					this.SendPropertyChanging();
-					this._Claim_Role = value;
-					this.SendPropertyChanged("Claim_Role");
-					this.OnClaim_RoleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_Date", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Claim_Date
-		{
-			get
-			{
-				return this._Claim_Date;
-			}
-			set
-			{
-				if ((this._Claim_Date != value))
-				{
-					this.OnClaim_DateChanging(value);
-					this.SendPropertyChanging();
-					this._Claim_Date = value;
-					this.SendPropertyChanged("Claim_Date");
-					this.OnClaim_DateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Staff_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Staff_ID
-		{
-			get
-			{
-				return this._Staff_ID;
-			}
-			set
-			{
-				if ((this._Staff_ID != value))
-				{
-					if (this._Staff.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStaff_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Staff_ID = value;
-					this.SendPropertyChanged("Staff_ID");
-					this.OnStaff_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Claim_Item", Storage="_Items", ThisKey="Claim_ID", OtherKey="Claim_ID")]
-		public EntitySet<Item> Items
-		{
-			get
-			{
-				return this._Items;
-			}
-			set
-			{
-				this._Items.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Claim_Log", Storage="_Logs", ThisKey="Claim_ID", OtherKey="Claim_ID")]
-		public EntitySet<Log> Logs
-		{
-			get
-			{
-				return this._Logs;
-			}
-			set
-			{
-				this._Logs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Claim", Storage="_Staff", ThisKey="Staff_ID", OtherKey="Staff_ID", IsForeignKey=true)]
-		public Staff Staff
-		{
-			get
-			{
-				return this._Staff.Entity;
-			}
-			set
-			{
-				Staff previousValue = this._Staff.Entity;
-				if (((previousValue != value) 
-							|| (this._Staff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Staff.Entity = null;
-						previousValue.Claims.Remove(this);
-					}
-					this._Staff.Entity = value;
-					if ((value != null))
-					{
-						value.Claims.Add(this);
-						this._Staff_ID = value.Staff_ID;
-					}
-					else
-					{
-						this._Staff_ID = default(string);
-					}
-					this.SendPropertyChanged("Staff");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Items(Item entity)
-		{
-			this.SendPropertyChanging();
-			entity.Claim = this;
-		}
-		
-		private void detach_Items(Item entity)
-		{
-			this.SendPropertyChanging();
-			entity.Claim = null;
-		}
-		
-		private void attach_Logs(Log entity)
-		{
-			this.SendPropertyChanging();
-			entity.Claim = this;
-		}
-		
-		private void detach_Logs(Log entity)
-		{
-			this.SendPropertyChanging();
-			entity.Claim = null;
 		}
 	}
 	
@@ -892,6 +613,285 @@ namespace LostAndFound
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Claim")]
+	public partial class Claim : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Claim_ID;
+		
+		private string _Claim_FirstName;
+		
+		private string _Claim_LastName;
+		
+		private string _Claim_Role;
+		
+		private System.Nullable<System.DateTime> _Claim_Date;
+		
+		private string _Staff_ID;
+		
+		private EntitySet<Item> _Items;
+		
+		private EntitySet<Log> _Logs;
+		
+		private EntityRef<Staff> _Staff;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnClaim_IDChanging(string value);
+    partial void OnClaim_IDChanged();
+    partial void OnClaim_FirstNameChanging(string value);
+    partial void OnClaim_FirstNameChanged();
+    partial void OnClaim_LastNameChanging(string value);
+    partial void OnClaim_LastNameChanged();
+    partial void OnClaim_RoleChanging(string value);
+    partial void OnClaim_RoleChanged();
+    partial void OnClaim_DateChanging(System.Nullable<System.DateTime> value);
+    partial void OnClaim_DateChanged();
+    partial void OnStaff_IDChanging(string value);
+    partial void OnStaff_IDChanged();
+    #endregion
+		
+		public Claim()
+		{
+			this._Items = new EntitySet<Item>(new Action<Item>(this.attach_Items), new Action<Item>(this.detach_Items));
+			this._Logs = new EntitySet<Log>(new Action<Log>(this.attach_Logs), new Action<Log>(this.detach_Logs));
+			this._Staff = default(EntityRef<Staff>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Claim_ID
+		{
+			get
+			{
+				return this._Claim_ID;
+			}
+			set
+			{
+				if ((this._Claim_ID != value))
+				{
+					this.OnClaim_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Claim_ID = value;
+					this.SendPropertyChanged("Claim_ID");
+					this.OnClaim_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_FirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Claim_FirstName
+		{
+			get
+			{
+				return this._Claim_FirstName;
+			}
+			set
+			{
+				if ((this._Claim_FirstName != value))
+				{
+					this.OnClaim_FirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._Claim_FirstName = value;
+					this.SendPropertyChanged("Claim_FirstName");
+					this.OnClaim_FirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_LastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Claim_LastName
+		{
+			get
+			{
+				return this._Claim_LastName;
+			}
+			set
+			{
+				if ((this._Claim_LastName != value))
+				{
+					this.OnClaim_LastNameChanging(value);
+					this.SendPropertyChanging();
+					this._Claim_LastName = value;
+					this.SendPropertyChanged("Claim_LastName");
+					this.OnClaim_LastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_Role", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Claim_Role
+		{
+			get
+			{
+				return this._Claim_Role;
+			}
+			set
+			{
+				if ((this._Claim_Role != value))
+				{
+					this.OnClaim_RoleChanging(value);
+					this.SendPropertyChanging();
+					this._Claim_Role = value;
+					this.SendPropertyChanged("Claim_Role");
+					this.OnClaim_RoleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Claim_Date", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Claim_Date
+		{
+			get
+			{
+				return this._Claim_Date;
+			}
+			set
+			{
+				if ((this._Claim_Date != value))
+				{
+					this.OnClaim_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Claim_Date = value;
+					this.SendPropertyChanged("Claim_Date");
+					this.OnClaim_DateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Staff_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Staff_ID
+		{
+			get
+			{
+				return this._Staff_ID;
+			}
+			set
+			{
+				if ((this._Staff_ID != value))
+				{
+					if (this._Staff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStaff_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Staff_ID = value;
+					this.SendPropertyChanged("Staff_ID");
+					this.OnStaff_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Claim_Item", Storage="_Items", ThisKey="Claim_ID", OtherKey="Claim_ID")]
+		public EntitySet<Item> Items
+		{
+			get
+			{
+				return this._Items;
+			}
+			set
+			{
+				this._Items.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Claim_Log", Storage="_Logs", ThisKey="Claim_ID", OtherKey="Claim_ID")]
+		public EntitySet<Log> Logs
+		{
+			get
+			{
+				return this._Logs;
+			}
+			set
+			{
+				this._Logs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Claim", Storage="_Staff", ThisKey="Staff_ID", OtherKey="Staff_ID", IsForeignKey=true)]
+		public Staff Staff
+		{
+			get
+			{
+				return this._Staff.Entity;
+			}
+			set
+			{
+				Staff previousValue = this._Staff.Entity;
+				if (((previousValue != value) 
+							|| (this._Staff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Staff.Entity = null;
+						previousValue.Claims.Remove(this);
+					}
+					this._Staff.Entity = value;
+					if ((value != null))
+					{
+						value.Claims.Add(this);
+						this._Staff_ID = value.Staff_ID;
+					}
+					else
+					{
+						this._Staff_ID = default(string);
+					}
+					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Items(Item entity)
+		{
+			this.SendPropertyChanging();
+			entity.Claim = this;
+		}
+		
+		private void detach_Items(Item entity)
+		{
+			this.SendPropertyChanging();
+			entity.Claim = null;
+		}
+		
+		private void attach_Logs(Log entity)
+		{
+			this.SendPropertyChanging();
+			entity.Claim = this;
+		}
+		
+		private void detach_Logs(Log entity)
+		{
+			this.SendPropertyChanging();
+			entity.Claim = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Logs")]
 	public partial class Log : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1215,9 +1215,9 @@ namespace LostAndFound
 		
 		private string _Staff_Password;
 		
-		private EntitySet<Claim> _Claims;
-		
 		private EntitySet<Item> _Items;
+		
+		private EntitySet<Claim> _Claims;
 		
 		private EntitySet<Log> _Logs;
 		
@@ -1243,8 +1243,8 @@ namespace LostAndFound
 		
 		public Staff()
 		{
-			this._Claims = new EntitySet<Claim>(new Action<Claim>(this.attach_Claims), new Action<Claim>(this.detach_Claims));
 			this._Items = new EntitySet<Item>(new Action<Item>(this.attach_Items), new Action<Item>(this.detach_Items));
+			this._Claims = new EntitySet<Claim>(new Action<Claim>(this.attach_Claims), new Action<Claim>(this.detach_Claims));
 			this._Logs = new EntitySet<Log>(new Action<Log>(this.attach_Logs), new Action<Log>(this.detach_Logs));
 			this._StaffRole = default(EntityRef<StaffRole>);
 			OnCreated();
@@ -1374,19 +1374,6 @@ namespace LostAndFound
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Claim", Storage="_Claims", ThisKey="Staff_ID", OtherKey="Staff_ID")]
-		public EntitySet<Claim> Claims
-		{
-			get
-			{
-				return this._Claims;
-			}
-			set
-			{
-				this._Claims.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Item", Storage="_Items", ThisKey="Staff_ID", OtherKey="Staff_ID")]
 		public EntitySet<Item> Items
 		{
@@ -1397,6 +1384,19 @@ namespace LostAndFound
 			set
 			{
 				this._Items.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Claim", Storage="_Claims", ThisKey="Staff_ID", OtherKey="Staff_ID")]
+		public EntitySet<Claim> Claims
+		{
+			get
+			{
+				return this._Claims;
+			}
+			set
+			{
+				this._Claims.Assign(value);
 			}
 		}
 		
@@ -1467,18 +1467,6 @@ namespace LostAndFound
 			}
 		}
 		
-		private void attach_Claims(Claim entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Claims(Claim entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
 		private void attach_Items(Item entity)
 		{
 			this.SendPropertyChanging();
@@ -1486,6 +1474,18 @@ namespace LostAndFound
 		}
 		
 		private void detach_Items(Item entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_Claims(Claim entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_Claims(Claim entity)
 		{
 			this.SendPropertyChanging();
 			entity.Staff = null;

@@ -32,7 +32,7 @@ namespace LostAndFound
         public Window2(string username)
         {
             InitializeComponent();
-            _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_DatabaseConnectionString);
+            _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_Database_2ConnectionString);
             WelcomeAdmin.Text = $"Welcome {username}!";
             tbdate.Text = DateTime.Now.ToString("MMMM dd, yyyy");
             MainFrame.Navigate(page1);
@@ -326,7 +326,7 @@ namespace LostAndFound
 
         private void FilterBox_DropDownClosed(object sender, EventArgs e)
         {
-
+            
         }
 
         private void FilterItems()
@@ -443,213 +443,305 @@ namespace LostAndFound
 
         private void cbRed_Checked(object sender, RoutedEventArgs e)
         {
+            cbRed.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbOrange_Checked(object sender, RoutedEventArgs e)
         {
+            cbOrange.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbYellow_Checked(object sender, RoutedEventArgs e)
         {
+            cbYellow.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbGreen_Checked(object sender, RoutedEventArgs e)
         {
+            cbGreen.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbBlue_Checked(object sender, RoutedEventArgs e)
         {
+            cbBlue.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbViolet_Checked(object sender, RoutedEventArgs e)
         {
+            cbViolet.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbPink_Checked(object sender, RoutedEventArgs e)
         {
+            cbPink.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbBlack_Checked(object sender, RoutedEventArgs e)
         {
+            cbBlack.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbWhite_Checked(object sender, RoutedEventArgs e)
         {
+            cbWhite.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbGray_Checked(object sender, RoutedEventArgs e)
         {
+            cbGray.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbBrown_Checked(object sender, RoutedEventArgs e)
         {
+            cbBrown.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbBeige_Checked(object sender, RoutedEventArgs e)
         {
+            cbBeige.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbMultiColor_Checked(object sender, RoutedEventArgs e)
         {
+            cbMultiColor.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbTransparent_Checked(object sender, RoutedEventArgs e)
         {
-            FilterItems();
+            cbTransparent.Foreground = new SolidColorBrush(Colors.DarkRed); FilterItems();
         }
 
         private void cbStudent_Checked(object sender, RoutedEventArgs e)
         {
+            cbStudent.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbEmployee_Checked(object sender, RoutedEventArgs e)
         {
+            cbEmployee.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbSTFF01_Checked(object sender, RoutedEventArgs e)
         {
+            cbSTFF01.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbSTFF03_Checked(object sender, RoutedEventArgs e)
         {
+            cbSTFF03.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbSTFF04_Checked(object sender, RoutedEventArgs e)
         {
+            cbSTFF04.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbMissing_Checked(object sender, RoutedEventArgs e)
         {
+            cbMissing.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbClaimed_Checked(object sender, RoutedEventArgs e)
         {
+            cbClaimed.Foreground = new SolidColorBrush(Colors.DarkRed);
             FilterItems();
         }
 
         private void cbRed_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbRed.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbOrange_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbOrange.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbYellow_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbYellow.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbGreen_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbGreen.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbBlue_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbBlue.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbViolet_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbViolet.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbPink_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbPink.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbBlack_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbBlack.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbWhite_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbWhite.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbGray_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbGray.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbBrown_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbBrown.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbBeige_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbBeige.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbMultiColor_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbMultiColor.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbTransparent_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbTransparent.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbStudent_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbStudent.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbEmployee_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbEmployee.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbSTFF01_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbSTFF01.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbSTFF03_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbSTFF03.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbSTFF04_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbSTFF04.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbMissing_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbMissing.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
 
         private void cbClaimed_UnChecked(object sender, RoutedEventArgs e)
         {
+            cbClaimed.Foreground = new SolidColorBrush(Colors.Black);
             FilterItems();
         }
         #endregion
+
+        private void btnClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            cbRed.IsChecked = false;
+            cbOrange.IsChecked = false;
+            cbYellow.IsChecked = false;
+            cbGreen.IsChecked = false;
+            cbBlue.IsChecked = false;
+            cbViolet.IsChecked = false;
+            cbPink.IsChecked = false;
+            cbBlack.IsChecked = false;
+            cbWhite.IsChecked = false;
+            cbGray.IsChecked = false;
+            cbBrown.IsChecked = false;
+            cbBeige.IsChecked = false;
+            cbMultiColor.IsChecked = false;
+            cbTransparent.IsChecked = false;
+            cbStudent.IsChecked = false;
+            cbEmployee.IsChecked = false;
+            cbSTFF01.IsChecked = false;
+            cbSTFF03.IsChecked = false;
+            cbSTFF04.IsChecked = false;
+            cbMissing.IsChecked = false;
+            cbClaimed.IsChecked = false;
+
+            cbRed.Foreground = new SolidColorBrush(Colors.Black);
+            cbOrange.Foreground = new SolidColorBrush(Colors.Black);
+            cbYellow.Foreground = new SolidColorBrush(Colors.Black);
+            cbGreen.Foreground = new SolidColorBrush(Colors.Black);
+            cbBlue.Foreground = new SolidColorBrush(Colors.Black);
+            cbViolet.Foreground = new SolidColorBrush(Colors.Black);
+            cbPink.Foreground = new SolidColorBrush(Colors.Black);
+            cbBlack.Foreground = new SolidColorBrush(Colors.Black);
+            cbWhite.Foreground = new SolidColorBrush(Colors.Black);
+            cbGray.Foreground = new SolidColorBrush(Colors.Black);
+            cbBrown.Foreground = new SolidColorBrush(Colors.Black);
+            cbBeige.Foreground = new SolidColorBrush(Colors.Black);
+            cbMultiColor.Foreground = new SolidColorBrush(Colors.Black);
+            cbTransparent.Foreground = new SolidColorBrush(Colors.Black);
+            cbStudent.Foreground = new SolidColorBrush(Colors.Black);
+            cbEmployee.Foreground = new SolidColorBrush(Colors.Black);
+            cbSTFF01.Foreground = new SolidColorBrush(Colors.Black);
+            cbSTFF03.Foreground = new SolidColorBrush(Colors.Black);
+            cbSTFF04.Foreground = new SolidColorBrush(Colors.Black);
+            cbMissing.Foreground = new SolidColorBrush(Colors.Black);
+            cbClaimed.Foreground = new SolidColorBrush(Colors.Black);
+
+            cbFilter.SelectedIndex = -1;
+            tbSearchBar.Clear();
+            populateListbox();
+        }
     }
 }

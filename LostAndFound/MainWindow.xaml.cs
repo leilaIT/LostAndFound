@@ -32,7 +32,7 @@ namespace LostAndFound
         public MainWindow()
         {
             InitializeComponent();
-            _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_DatabaseConnectionString);
+            _lfDC = new LostAndFoundDataContext(Properties.Settings.Default.Lost_Found_Database_2ConnectionString);
 
             // mga admins
             var getAllUsers = (from s in _lfDC.Staffs
